@@ -1,4 +1,7 @@
+import { useRouter } from "next/navigation";
+
 export default function Elevate() {
+  const router = useRouter()
   return (
     <section className="relative flex items-center justify-center px-4 py-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
       
@@ -66,7 +69,7 @@ export default function Elevate() {
                      w-full sm:w-auto"
             type="button"
           >
-            <span className="flex items-center gap-2">
+            <span className="flex items-center gap-2 cursor-pointer" onClick={()=>router.push("/#service")}>
               View Our Work
               <svg className="w-4 h-4 transform group-hover:rotate-12 transition-transform duration-300" 
                    fill="none" stroke="currentColor" viewBox="0 0 24 24">

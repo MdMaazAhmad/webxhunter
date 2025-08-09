@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code, PencilRuler, Search } from 'lucide-react';
+import { Code, PencilRuler, TrendingUp } from 'lucide-react';
 
 const services = [
   {
@@ -18,7 +18,7 @@ const services = [
   },
   {
     id: 3,
-    icon: Search,
+    icon: TrendingUp,
     title: "Digital Marketing",
     description: "Implementing effective strategies to increase your online visibility and reach your target audience.",
     features: ['SEO Optimization', 'Social Media', 'Content Strategy', 'Analytics']

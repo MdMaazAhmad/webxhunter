@@ -8,7 +8,7 @@ const NAV_ITEMS = [
   { label: "Home", href: "/#home", section: "home" },
   { label: "About us", href: "/about", section: "about" },
   { label: "Service", href: "/#service", section: "service", type: "section" },
-  // { label: "Blogs", href: "/blog" },
+  { label: "Blogs", href: "/blog" },
 ];
 
 const smoothScroll = (id) => {
