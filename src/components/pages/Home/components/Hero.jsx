@@ -7,12 +7,12 @@ const services = [
   { icon: Code, name: "Web Development" },
   { icon: Palette, name: "UI/UX Design" },
   { icon: Smartphone, name: "Mobile Apps" },
-  { icon: TrendingUp, name: "Digital Strategy" },
+  { icon: TrendingUp, name: "Digital Marketing" },
 ];
 
 const stats = [
-  { number: 150, label: "Projects Delivered", suffix: "+" },
-  { number: 95, label: "Client Satisfaction", suffix: "%" },
+  { number: 50, label: "Projects Delivered", suffix: "+" },
+  { number: 90, label: "Client Satisfaction", suffix: "%" },
   { number: null, label: "Support Available", suffix: "24/7" },
 ];
 
@@ -73,8 +73,8 @@ const HeroTitle = () => (
 
 const HeroDescription = () => (
   <p className="text-sm md:text-xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
-    From stunning websites to powerful mobile apps, we craft digital experiences
-    that captivate users and drive business growth.
+    From stunning websites to powerful mobile apps and result-driven marketing campaigns, Web x Hunter crafts digital experiences that captivate your audience and fuel business growth.
+
   </p>
 );
 

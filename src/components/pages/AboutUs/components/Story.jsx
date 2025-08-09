@@ -8,7 +8,7 @@ const Story = memo(() => (
         <div>
           <div className="inline-flex items-center px-3 py-1 rounded-full bg-orange-100/10 text-orange-400 text-xs font-medium mb-6">
             <Calendar className="w-3 h-3 mr-2" />
-            Founded in 2018
+            Founded in 2020
           </div>
           <h2 className="text-xl md:text-2xl font-bold text-white mb-6">
             Our Journey to 
@@ -16,12 +16,10 @@ const Story = memo(() => (
           </h2>
           <div className="space-y-4 text-sm text-gray-300 mb-6">
             <p>
-              Founded with a vision to bridge the gap between creative design and cutting-edge technology, 
-              Web x Hunter has evolved from a passionate startup to a globally recognized digital agency.
+            Founded with a vision to bridge the gap between creative design and cutting-edge technology, Web x Hunter has evolved from a passionate startup into a globally recognized IT company.
             </p>
             <p>
-              We believe in the power of collaboration, innovation, and relentless pursuit of excellence. 
-              Our team combines technical expertise with creative flair to deliver solutions that exceed expectations.
+            We believe in the power of collaboration, innovation, and the relentless pursuit of excellence. Our team combines technical expertise with creative flair to deliver solutions that exceed expectations.
             </p>
           </div>
           <div className="space-y-3">
@@ -31,11 +29,11 @@ const Story = memo(() => (
             </div>
             <div className="flex items-center">
               <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-              <span className="text-gray-300 text-sm">Expanded to serve clients across 50+ countries globally</span>
+              <span className="text-gray-300 text-sm">Expanded to serve clients in 3+ countries worldwide</span>
             </div>
             <div className="flex items-center">
               <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-              <span className="text-gray-300 text-sm">Built a team of 150+ world-class professionals</span>
+              <span className="text-gray-300 text-sm">Built a team of 10+ world-class professionals</span>
             </div>
           </div>
         </div>

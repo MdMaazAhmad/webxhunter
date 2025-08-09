@@ -1,33 +1,37 @@
 import { memo } from 'react';
 import { Linkedin, Twitter, Github } from 'lucide-react';
+import Taukir from "@/images/Taukir.jpg"
+import Irfan from "@/images/Irfan.jpg"
+import Furqan from  "@/images/furquan.webp"
+import Maaz from "@/images/Maaz.jpg"
 
 const Team = memo(() => {
   const team = [
     {
-      name: "Alex Chen",
+      name: "Furqan Zaman",
       role: "Founder & CEO",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
-      bio: "Visionary leader with 15+ years in digital innovation and strategic business development",
+      image: Furqan.src,
+      bio: "Visionary leader in digital innovation and strategic business development",
       gradient: "from-orange-400 to-red-500"
     },
     {
-      name: "Sarah Martinez",
+      name: "Irfan Jawad",
       role: "Creative Director",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face",
-      bio: "Award-winning designer passionate about creating exceptional user experiences and brand identities",
+      image: Irfan.src,
+      bio: "Creative designer passionate about creating exceptional user experiences and brand identities",
       gradient: "from-blue-500 to-purple-500"
     },
     {
-      name: "David Kumar",
+      name: "Md Taukir",
       role: "Tech Lead",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+      image: Taukir.src,
       bio: "Full-stack architect specializing in scalable solutions and emerging technology integration",
       gradient: "from-green-500 to-blue-500"
     },
     {
-      name: "Emma Thompson",
+      name: "Maaz Ahmad",
       role: "Strategy Director",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
+      image: Maaz.src,
       bio: "Growth expert helping brands achieve digital transformation and sustainable market expansion",
       gradient: "from-purple-500 to-pink-500"
     }
@@ -60,15 +64,15 @@ const Team = memo(() => {
                 </div>
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-3">
                   <div className="flex space-x-2">
-                    <div className="w-6 h-6 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors cursor-pointer">
+                    {/* <div className="w-6 h-6 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors cursor-pointer">
                       <Linkedin className="w-3 h-3 text-white" />
-                    </div>
-                    <div className="w-6 h-6 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors cursor-pointer">
+                    </div> */}
+                    {/* <div className="w-6 h-6 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors cursor-pointer">
                       <Twitter className="w-3 h-3 text-white" />
                     </div>
                     <div className="w-6 h-6 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors cursor-pointer">
                       <Github className="w-3 h-3 text-white" />
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

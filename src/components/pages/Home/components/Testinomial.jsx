@@ -1,30 +1,32 @@
 import React from 'react';
 import { Star } from 'lucide-react';
+import ChandanBulani from "@/images/Chandan Bulani.webp"
+import Danish from "@/images/Danish.png"
 
 const testimonials = [
   {
     id: 1,
-    name: "Sophia Carter",
+    name: "Chandan Bulani",
     date: "2023-08-15",
     rating: 5,
-    avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuCBAIgPv62Bkny024fH6SqtRvMVhViKy0FXVwudnzGUDAGpDjEX9zlRh_fRKFZEByuMPW23JQZ5yjmiCqTA7lYRo16panfmV8BWwzOSaAO8exs7Z4_puXoMKDhcLWLco11QRRdvJfBhcX3y6p0tuwCauIWToptBN6c0rF9N3qRN_pPWyYEluQu1kw0W5dkLBtIYz1HL_1DyI9AjP9r4fXjcTrRqBDa0paixaqQ-UI-PedLUW0EfsWVItxSR5QhtR3F41xnN3uswMgo",
-    testimonial: "Working with Web x Hunter was a fantastic experience. They understood our vision and delivered a website that exceeded our expectations. Their professionalism and attention to detail are commendable."
+    avatar: ChandanBulani.src,
+    testimonial: "We hired Web X Hunter to design and develop our Skinly website, and the experience was absolutely outstanding. From the very first consultation, their team understood our vision for a stylish, user-friendly, and conversion-focused eCommerce platform. They delivered a sleek design that perfectly showcases our mobile skins and accessories, with smooth navigation and fast loading speeds."
   },
   {
     id: 2,
-    name: "Ethan Bennett",
+    name: "Danish Khan",
     date: "2023-07-22",
     rating: 5,
-    avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuBS3HSlhD1c3toAWRJ1fiNF6PL-2HpuGVxSlVqicaot7dT7a1jH3P88ARn5BKgipnXEPiXAg47kBdm1zCcg1LUMdPK9HJhCnoRzWYeGyVGvziIcq-2__xsc-UZLwV3xXZpjjm2z3X2gTb_KnXnEVJhnnfaWJot-GW3qE4PbBmUlUvkaA5YTpYfXg8ajoSV2MNkzKFs8m6MjV5hBYDsz8vgUSDqBwcCv_GPEZz5BnxEv826DwdJNGXiJ_ptAdkJCBDJMwq2D9HE-oEQ",
-    testimonial: "The team at Web x Hunter is highly skilled and dedicated. They transformed our online presence and helped us achieve significant growth. We highly recommend their services."
+    avatar: Danish.src,
+    testimonial: "Web X Hunter did a great job creating our Urban Layon eCommerce website. From the start, they understood our vision for a premium clothing brand and turned it into a modern, stylish, and easy-to-use online store. The design matches our brand perfectly, with smooth navigation, quick loading, and a hassle-free shopping experience for our customers."
   },
   {
     id: 3,
-    name: "Olivia Hayes",
+    name: "Chandan Bulani",
     date: "2023-06-10",
     rating: 5,
-    avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuDt0vF8H8OJXXdeThVo74roBnOh7O2zTCI1uIQDzgzYiRRi0pjbOjwD7Z7p070S5UVCcVM6PUlQdQYlY5vXfoQtHGPY9aC0vanHy209jPM98-mcY-N2mMZhdFjZNlUGRlx__ghw0-Fy5NA39AxN8rS1pAsnxXdW9ma3TZaGBoWpfwpjyFv4ZcVt6I5KSWQK6JnxWUjKDlIiYLGolit4x-RQdE1Ib-8Yn2QLtUjMAl85CfwgkTi_mKuTAQfOBIXdN4gbZDEMUgh4_SE",
-    testimonial: "Web x Hunter provided exceptional service and support throughout the entire process. Their creativity and expertise are unmatched. We are thrilled with the results."
+    avatar: ChandanBulani.src,
+    testimonial: "Working with Web X Hunter on our MHM Studios website was a fantastic experience from start to finish. Their team captured our brand’s creative essence perfectly, delivering a modern, visually appealing, and highly functional website that truly reflects our work in the media and production industry."
   }
 ];
 

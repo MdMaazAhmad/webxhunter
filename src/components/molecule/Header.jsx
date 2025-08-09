@@ -8,7 +8,7 @@ const NAV_ITEMS = [
   { label: "Home", href: "/#home", section: "home" },
   { label: "About us", href: "/about", section: "about" },
   { label: "Service", href: "/#service", section: "service", type: "section" },
-  { label: "Blogs", href: "/blog" },
+  // { label: "Blogs", href: "/blog" },
 ];
 
 const smoothScroll = (id) => {
@@ -165,13 +165,13 @@ export default function Header() {
               {item.label}
             </button>
           ))}
-          <Button 
+          {/* <Button 
             type="primary" 
             onClick={() => router.push("/contact")}
             className="ml-4"
           >
             Contact
-          </Button>
+          </Button> */}
         </nav>
 
         {/* Mobile Menu Button */}
@@ -213,7 +213,7 @@ export default function Header() {
               {item.label}
             </button>
           ))}
-          <Button 
+          {/* <Button 
             type="primary" 
             className="w-full mt-4"
             onClick={() => {
@@ -222,7 +222,7 @@ export default function Header() {
             }}
           >
             Contact
-          </Button>
+          </Button> */}
         </nav>
       </div>
 

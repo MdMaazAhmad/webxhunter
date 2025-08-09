@@ -12,9 +12,9 @@ const services = [
   {
     id: 2,
     icon: PencilRuler,
-    title: "Web Design",
-    description: "Creating visually appealing and user-friendly designs that enhance your brand identity.",
-    features: ['UI/UX Design', 'Brand Identity', 'Responsive Design', 'Prototyping']
+    title: "App Development",
+    description: "Developing high-quality, scalable mobile and web applications to meet your business needs.",
+    features: ['React Native', 'Cross-Platform Apps', 'Backend Integration', 'Performance Optimization']
   },
   {
     id: 3,
@@ -24,6 +24,7 @@ const services = [
     features: ['SEO Optimization', 'Social Media', 'Content Strategy', 'Analytics']
   }
 ];
+
 
 export default function Services() {
   return (

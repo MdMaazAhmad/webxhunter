@@ -27,21 +27,21 @@ const Hero = memo(() => (
         <div className="w-12 h-12 bg-gradient-to-r from-orange-400 to-blue-500 rounded-xl flex items-center justify-center mx-auto mb-3">
           <Award className="w-6 h-6 text-white" />
         </div>
-        <h3 className="text-lg font-bold text-white mb-1">500+</h3>
+        <h3 className="text-lg font-bold text-white mb-1">50+</h3>
         <p className="text-gray-400 text-sm">Projects Delivered</p>
       </div>
       <div className="text-center">
         <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mx-auto mb-3">
           <Globe className="w-6 h-6 text-white" />
         </div>
-        <h3 className="text-lg font-bold text-white mb-1">50+</h3>
+        <h3 className="text-lg font-bold text-white mb-1">3+</h3>
         <p className="text-gray-400 text-sm">Countries Served</p>
       </div>
       <div className="text-center">
         <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-orange-400 rounded-xl flex items-center justify-center mx-auto mb-3">
           <Rocket className="w-6 h-6 text-white" />
         </div>
-        <h3 className="text-lg font-bold text-white mb-1">98%</h3>
+        <h3 className="text-lg font-bold text-white mb-1">90%</h3>
         <p className="text-gray-400 text-sm">Client Satisfaction</p>
       </div>
     </div>

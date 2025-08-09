@@ -1,37 +1,50 @@
 import { memo } from 'react';
-import { Code, Palette, TrendingUp, Zap } from 'lucide-react';
+import { Code, Palette, TrendingUp, Zap,Smartphone } from 'lucide-react';
 
 const Expertise = memo(() => {
-  const services = [
-    {
-      icon: Palette,
-      title: "Digital Design",
-      description: "Creating stunning visual experiences that captivate audiences and drive conversions through strategic design thinking.",
-      features: ["UI/UX Design", "Brand Identity", "Design Systems", "Prototyping"],
-      gradient: "from-orange-500 to-red-500"
-    },
-    {
-      icon: Code,
-      title: "Web Development", 
-      description: "Building lightning-fast, scalable applications with modern technologies and best practices for optimal performance.",
-      features: ["React/Next.js", "Node.js", "Cloud Solutions", "API Development"],
-      gradient: "from-blue-500 to-cyan-500"
-    },
-    {
-      icon: TrendingUp,
-      title: "Digital Marketing",
-      description: "Driving sustainable growth through data-driven marketing strategies and performance optimization techniques.",
-      features: ["SEO Optimization", "Content Strategy", "Analytics", "Conversion Optimization"],
-      gradient: "from-green-500 to-emerald-500"
-    },
-    {
-      icon: Zap,
-      title: "Performance",
-      description: "Optimizing every aspect for maximum speed, efficiency, and user satisfaction across all platforms and devices.",
-      features: ["Core Web Vitals", "Mobile First", "CDN Integration", "Speed Optimization"],
-      gradient: "from-purple-500 to-pink-500"
-    }
-  ];
+    const services = [
+        {
+          icon: Palette,
+          title: "Digital Design",
+          description:
+            "Creating stunning visual experiences that captivate audiences and drive conversions through strategic design thinking.",
+          features: ["UI/UX Design", "Brand Identity", "Design Systems", "Prototyping"],
+          gradient: "from-orange-500 to-red-500",
+        },
+        {
+          icon: Code,
+          title: "Web Development",
+          description:
+            "Building lightning-fast, scalable applications with modern technologies and best practices for optimal performance.",
+          features: ["React/Next.js", "Node.js", "Cloud Solutions", "API Development"],
+          gradient: "from-blue-500 to-cyan-500",
+        },
+        {
+          icon: Smartphone, // You can choose a mobile app-related icon
+          title: "App Development",
+          description:
+            "Designing and developing high-performance mobile applications that deliver seamless experiences on Android and iOS.",
+          features: ["React Native", "Flutter", "API Integration", "App Store & Play Store Deployment"],
+          gradient: "from-yellow-500 to-orange-500",
+        },
+        {
+          icon: TrendingUp,
+          title: "Digital Marketing",
+          description:
+            "Driving sustainable growth through data-driven marketing strategies and performance optimization techniques.",
+          features: ["SEO Optimization", "Content Strategy", "Analytics", "Conversion Optimization", "Google & Meta Ads"],
+          gradient: "from-green-500 to-emerald-500",
+        },
+        {
+          icon: Zap,
+          title: "Performance",
+          description:
+            "Optimizing every aspect for maximum speed, efficiency, and user satisfaction across all platforms and devices.",
+          features: ["Core Web Vitals", "Mobile First", "CDN Integration", "Speed Optimization"],
+          gradient: "from-purple-500 to-pink-500",
+        },
+      ];
+      
 
   return (
     <section className="py-20 bg-black relative overflow-hidden">
