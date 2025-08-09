@@ -1,15 +1,17 @@
 import Hero from "@/components/pages/AboutUs/components/Hero";
-import AboutUs from "@/components/pages/AboutUs/components/OurValues";
 import Team from "@/components/pages/AboutUs/components/Team";
-import WhyUs from "@/components/pages/AboutUs/components/WhyUs";
+import Story from "./components/Story";
+import Values from "./components/Values";
+import Expertise from "./components/Expertise";
 
 export default function Aboutus() {
   return (
-    <div className="px-4 py-8">
+    <div className="min-h-screen bg-black">
       <Hero />
-      <AboutUs />
+      <Story />
+      <Values />
       <Team />
-      <WhyUs />
+      <Expertise />
     </div>
   );
 }

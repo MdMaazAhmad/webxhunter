@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Code, PencilRuler, Search } from 'lucide-react';
 
 const services = [
@@ -6,80 +6,72 @@ const services = [
     id: 1,
     icon: Code,
     title: "Web Development",
-    description: "Building responsive, high-performance websites tailored to your business objectives."
+    description: "Building responsive, high-performance websites tailored to your business objectives.",
+    features: ['React & Next.js', 'Node.js Backend', 'Database Design', 'API Integration']
   },
   {
     id: 2,
     icon: PencilRuler,
     title: "Web Design",
-    description: "Creating visually appealing and user-friendly designs that enhance your brand identity."
+    description: "Creating visually appealing and user-friendly designs that enhance your brand identity.",
+    features: ['UI/UX Design', 'Brand Identity', 'Responsive Design', 'Prototyping']
   },
   {
     id: 3,
     icon: Search,
     title: "Digital Marketing",
-    description: "Implementing effective strategies to increase your online visibility and reach your target audience."
+    description: "Implementing effective strategies to increase your online visibility and reach your target audience.",
+    features: ['SEO Optimization', 'Social Media', 'Content Strategy', 'Analytics']
   }
 ];
 
 export default function Services() {
-  const [hasServiceHash, setHasServiceHash] = useState(false);
-
-  useEffect(() => {
-    // Check initial hash
-    const checkHash = () => {
-      setHasServiceHash(window.location.hash === '#service');
-    };
-
-    // Check on mount
-    checkHash();
-
-    // Listen for hash changes
-    window.addEventListener('hashchange', checkHash);
-
-    return () => {
-      window.removeEventListener('hashchange', checkHash);
-    };
-  }, []);
-
   return (
-    <div 
-      className={`px-4 py-8 ${hasServiceHash ? 'pt-[5rem]' : ''}`} 
-      id='service'
-    >
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-white text-xl md:text-2xl font-bold mb-8">
-          Our Services
-        </h2>
-       
-        <div className="mb-10">
-          <h1 className="text-white text-2xl md:text-3xl lg:text-4xl font-bold mb-4 max-w-3xl">
+    <section id="service" className="pt-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <p className="text-orange-400 font-semibold mb-4 text-xs uppercase tracking-wide">OUR SERVICES</p>
+          <h2 className="text-xl md:text-2xl font-bold text-white mb-6">
             Comprehensive Digital Solutions
-          </h1>
-          <p className="text-white/80 text-base leading-relaxed max-w-3xl">
+          </h2>
+          <p className="text-sm md:text-base text-gray-400 max-w-2xl mx-auto">
             We offer a wide range of services to meet your digital needs, from web development and design to digital marketing and SEO.
           </p>
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {services.map((service) => {
             const IconComponent = service.icon;
             return (
               <div
                 key={service.id}
-                className="bg-gray-800/50 border border-gray-600/50 rounded-lg p-6 hover:bg-gray-800/70 transition-colors duration-200"
+                className="group bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 hover:bg-gray-800/70 hover:border-orange-500/50 transition-all duration-300 hover:-translate-y-2"
               >
-                <IconComponent className="text-white w-6 h-6 mb-4" />
-                <h3 className="text-white text-lg font-semibold mb-2">
+                <div className="bg-orange-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-orange-500 transition-all duration-300">
+                  <IconComponent className="text-white w-6 h-6" />
+                </div>
+                
+                <h3 className="text-lg font-bold text-white mb-3 group-hover:text-orange-400 transition-colors duration-300">
                   {service.title}
                 </h3>
-                <p className="text-gray-300 text-sm leading-relaxed">
+                
+                <p className="text-gray-400 mb-4 text-sm leading-relaxed">
                   {service.description}
                 </p>
+                
+                <ul className="space-y-2">
+                  {service.features.map((feature, idx) => (
+                    <li key={idx} className="text-xs text-gray-500 flex items-center gap-2 group-hover:text-gray-400 transition-colors duration-300">
+                      <div className="w-1 h-1 bg-orange-400 rounded-full group-hover:bg-orange-300 transition-colors duration-300"></div>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
               </div>
             );
           })}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

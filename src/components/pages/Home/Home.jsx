@@ -7,10 +7,10 @@ import Testimonial from "@/components/pages/Home/components/Testinomial"
 import Elevate from "@/components/pages/Home/components/Elevate"
 export default function Home(){
     return(
-        <div id="#home" >
+        <div  >
         <Hero/>
-        <Services/>
         <Feature/>
+        <Services/>
         <Testimonial/>
         <Elevate/>
         </div>

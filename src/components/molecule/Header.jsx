@@ -5,9 +5,9 @@ import { useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
 const NAV_ITEMS = [
-  { label: "Home", href: "/", section: "home" },
+  { label: "Home", href: "/#home", section: "home" },
   { label: "About us", href: "/about", section: "about" },
-  { label: "Service", href: "/#service", section: "service" },
+  { label: "Service", href: "/#service", section: "service", type: "section" },
   { label: "Blogs", href: "/blog" },
 ];
 
@@ -22,11 +22,13 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [currentHash, setCurrentHash] = useState("/");
   const router = useRouter();
   const pathname = usePathname();
 
+  // Handle scroll detection
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    const handleScroll = () => setIsScrolled(window.scrollY > 0.1);
     const handleEscape = (e) => e.key === "Escape" && setIsMenuOpen(false);
     
     window.addEventListener("scroll", handleScroll);
@@ -38,79 +40,136 @@ export default function Header() {
     };
   }, []);
 
+  // Enhanced intersection observer and hash handling (from ML-experts)
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(entry.target.id);
-        });
-      },
-      {
-        threshold: 0.5
-      }
-    );
+    if (typeof window !== "undefined") {
+      const handleHashChange = () => {
+        setCurrentHash(`/${window.location.hash}`);
+      };
 
-    document.querySelectorAll("section[id]").forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+      handleHashChange(); // Set initial hash
+      window.addEventListener("hashchange", handleHashChange);
+
+      // Set active section based on location
+      if (!pathname.includes('#')) {
+        setActiveSection('home'); // Default to home if no hash
+      }
+
+      // Enhanced intersection observer with ML-experts settings
+      const options = {
+        threshold: 0.5, // ML-experts uses 0.5 for more precise detection
+        rootMargin: "0px 0px -20% 0px" // Slight bottom margin for better UX
+      };
+
+      const handleIntersect = (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+            // Update hash without triggering navigation
+            if (pathname === "/") {
+              const newHash = `#${entry.target.id}`;
+              if (window.location.hash !== newHash) {
+                window.history.replaceState(null, null, newHash);
+                setCurrentHash(`/${newHash}`);
+              }
+            }
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(handleIntersect, options);
+
+      // Observe all sections with IDs
+      document.querySelectorAll("section[id]").forEach((section) => {
+        observer.observe(section);
+      });
+
+      return () => {
+        window.removeEventListener("hashchange", handleHashChange);
+        observer.disconnect();
+      };
+    }
+  }, [pathname]);
 
   const handleNavClick = (item, e) => {
+    e.preventDefault();
     setIsMenuOpen(false);
+    setCurrentHash(item.href);
     
     if (item.type === "section") {
-      e.preventDefault();
-      const sectionId = item.href.replace("#", "");
+      const sectionId = item.href.replace("/#", "");
       
-      // If we're not on home page, go to home first
       if (pathname !== "/") {
-        router.push("/");
-        setTimeout(() => smoothScroll(sectionId), 100);
+        router.push(item.href);
+        // Wait for navigation to complete, then scroll
+        setTimeout(() => smoothScroll(sectionId), 150);
       } else {
+        // Update URL hash
+        window.history.pushState(null, null, `#${sectionId}`);
+        setCurrentHash(`/#${sectionId}`);
         smoothScroll(sectionId);
       }
     } else {
-      // For page navigation, let the default behavior handle it
       router.push(item.href);
     }
   };
 
+  // Enhanced active state detection (similar to ML-experts getMenuTextColor logic)
   const isActive = (item) => {
     if (item.type === "section") {
-      const sectionId = item.href.replace("#", "");
-      return pathname === "/" && activeSection === sectionId;
+      const sectionId = item.href.replace("/#", "");
+      // Check if current section matches OR if the hash matches
+      return (pathname === "/" && activeSection === sectionId) || 
+             currentHash === item.href || 
+             pathname === item.href;
     }
-    return pathname === item.href;
+    return pathname === item.href || currentHash === item.href;
+  };
+
+  const getNavItemClass = (item) => {
+    const baseClass = "text-sm font-medium transition-all duration-300 hover:text-gray-300 px-3 py-2 rounded-md";
+    const activeClass = isActive(item) 
+      ? "text-orange-400 bg-orange-400/10 font-semibold" 
+      : "text-white hover:bg-white/5";
+    
+    return `${baseClass} ${activeClass}`;
   };
 
   return (
     <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
       isScrolled ? "bg-black/90 backdrop-blur-md shadow-lg" : "bg-transparent"
-    } border-b border-gray-800/50`}>
+    }`}>
       <div className="flex items-center justify-between px-4 lg:px-8 py-4">
         
         {/* Logo */}
         <div 
           className="flex items-center gap-3 text-white cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={() => router.push("/")}
+          onClick={() => {
+            router.push("/");
+            setCurrentHash("/");
+            setActiveSection("home");
+          }}
         >
           <img src={Logo.src} alt="Logo" className="w-4 h-4" />
           <h1 className="text-lg font-bold">Web x Hunter</h1>
         </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-6">
+        <nav className="hidden lg:flex items-center gap-2">
           {NAV_ITEMS.map((item) => (
             <button
               key={item.href}
               onClick={(e) => handleNavClick(item, e)}
-              className={`text-sm font-medium transition-colors hover:text-gray-300 px-2 py-1 rounded ${
-                isActive(item) ? "text-orange-400" : "text-white"
-              }`}
+              className={getNavItemClass(item)}
             >
               {item.label}
             </button>
           ))}
-          <Button type="primary" onClick={() => router.push("/contact")}>
+          <Button 
+            type="primary" 
+            onClick={() => router.push("/contact")}
+            className="ml-4"
+          >
             Contact
           </Button>
         </nav>
@@ -145,8 +204,10 @@ export default function Header() {
             <button
               key={item.href}
               onClick={(e) => handleNavClick(item, e)}
-              className={`block w-full text-left py-2 transition-colors ${
-                isActive(item) ? "text-orange-400 font-semibold" : "text-white"
+              className={`block w-full text-left py-3 px-2 rounded-md transition-all duration-200 ${
+                isActive(item) 
+                  ? "text-orange-400 font-semibold bg-orange-400/10" 
+                  : "text-white hover:bg-white/5"
               }`}
             >
               {item.label}

@@ -30,19 +30,25 @@ const testimonials = [
 
 export default function Testimonial() {
   return (
-    <div className="px-4 py-8">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-white text-xl md:text-2xl font-bold mb-8">
-          Client Testimonials
-        </h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3  gap-6">
+    <section className="py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <p className="text-orange-400 font-semibold mb-4 text-xs uppercase tracking-wide">TESTIMONIALS</p>
+          <h2 className="text-xl md:text-2xl font-bold text-white mb-6">
+            What Our Clients Say
+          </h2>
+          <p className="text-sm md:text-base text-gray-400 max-w-2xl mx-auto">
+            Don't just take our word for it. Here's what our satisfied clients have to say about their experience working with us.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((testimonial) => (
             <TestimonialCard key={testimonial.id} testimonial={testimonial} />
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -56,37 +62,35 @@ function TestimonialCard({ testimonial }) {
   };
 
   return (
-    <div className="bg-gray-800/30 border border-gray-700/50 rounded-lg p-6 hover:bg-gray-800/50 transition-colors duration-200">
-      {/* Header with avatar and user info */}
+    <div className="group bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 hover:bg-gray-800/70 hover:border-orange-500/50 transition-all duration-300 hover:-translate-y-2">
       <div className="flex items-center gap-3 mb-4">
-        <img
-          src={testimonial.avatar}
-          alt={`${testimonial.name} avatar`}
-          className="w-12 h-12 rounded-full object-cover bg-gray-700"
-          loading="lazy"
-        />
+        <div className="relative">
+          <img
+            src={testimonial.avatar}
+            alt={`${testimonial.name} avatar`}
+            className="w-12 h-12 rounded-full object-cover bg-gray-700 border-2 border-gray-600 group-hover:border-orange-400 transition-all duration-300"
+          />
+          <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-orange-600 rounded-full flex items-center justify-center group-hover:bg-orange-500 transition-colors duration-300">
+            <Star className="w-2.5 h-2.5 text-white fill-current" />
+          </div>
+        </div>
         <div className="flex-1">
-          <h3 className="text-white text-base font-medium">
+          <h3 className="text-sm font-bold text-white mb-1 group-hover:text-orange-400 transition-colors duration-300">
             {testimonial.name}
           </h3>
-          <p className="text-gray-400 text-sm">
+          <p className="text-gray-400 text-xs group-hover:text-gray-300 transition-colors duration-300">
             {formatDate(testimonial.date)}
           </p>
         </div>
       </div>
 
-      {/* Star rating */}
       <div className="flex gap-1 mb-4">
-        {Array.from({ length: testimonial.rating }, (_, index) => (
-          <Star 
-            key={index} 
-            className="w-5 h-5 text-yellow-400 fill-current" 
-          />
+        {Array.from({ length: testimonial.rating }, (_, starIndex) => (
+          <Star key={starIndex} className="w-4 h-4 text-yellow-400 fill-current" />
         ))}
       </div>
 
-      {/* Testimonial text */}
-      <blockquote className="text-white text-sm leading-relaxed">
+      <blockquote className="text-gray-400 text-xs leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
         "{testimonial.testimonial}"
       </blockquote>
     </div>

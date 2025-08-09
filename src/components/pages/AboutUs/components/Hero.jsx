@@ -1,71 +1,52 @@
 import { memo } from 'react';
+import { Award, Globe, Rocket } from 'lucide-react';
 
-// Content configuration for better maintainability
-const HERO_CONTENT = {
-  title: "About Us",
-  subtitle: "At Web x Hunter, we're more than just a web service agency; we're a team of passionate individuals dedicated to crafting exceptional digital experiences. Our journey began with a simple vision: to empower businesses with innovative and effective web solutions that drive growth and success.",
-  sections: [
-    {
-      id: 'our-story',
-      title: 'Our Story',
-      content: "Founded in 2015 by Sarah Hunter, Web x Hunter started as a small team of web enthusiasts with a shared passion for technology and design. Over the years, we've grown into a full-service agency, expanding our expertise to cover a wide range of web services, from custom website development to digital marketing strategies. Our commitment to excellence and client satisfaction has been the cornerstone of our success."
-    },
-    {
-      id: 'our-mission',
-      title: 'Our Mission',
-      content: "Our mission is to help businesses thrive in the digital landscape by providing tailored web solutions that align with their unique goals and objectives. We believe in a collaborative approach, working closely with our clients to understand their needs and deliver results that exceed expectations. We strive to be more than just a service provider; we aim to be a trusted partner in our clients' digital journey."
-    }
-  ]
-};
-
-// Extracted Section component for better reusability
-const ContentSection = memo(({ title, content, id }) => (
-  <section className="mb-8" aria-labelledby={`${id}-heading`}>
-    <h2 
-      id={`${id}-heading`}
-      className="text-white text-xl md:text-2xl font-bold mb-2"
-    >
-      {title}
-    </h2>
-    <p className="text-white/80 text-base leading-relaxed ">
-      {content}
-    </p>
-  </section>
-));
-
-ContentSection.displayName = 'ContentSection';
-
-// Main Hero Component
-const Hero = memo(() => {
-  return (
-    <div className="">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-white text-2xl md:text-3xl font-bold mb-8">
-          {HERO_CONTENT.title}
-        </h2>
-        
-        <div className="mb-10">
-        
-          <p className="text-white/60 text-base leading-relaxed ">
-            {HERO_CONTENT.subtitle}
-          </p>
+const Hero = memo(() => (
+  <section className="relative py-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
+  <div className="absolute inset-0 opacity-20">
+    <div className="absolute top-20 left-20 w-96 h-96 bg-orange-400/10 rounded-full blur-3xl animate-pulse"></div>
+    <div className="absolute bottom-20 right-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+  </div>
+  
+  <div className="relative max-w-5xl mx-auto px-6">
+    <div className="text-center mb-16">
+      <h1 className="text-2xl md:text-3xl font-bold text-white mb-6">
+        Transforming Ideas Into
+        <span className="block bg-gradient-to-r from-orange-400 to-blue-500 bg-clip-text text-transparent">
+          Digital Excellence
+        </span>
+      </h1>
+      <p className="text-sm md:text-base text-gray-300 max-w-3xl mx-auto">
+        We craft exceptional digital experiences that drive growth, inspire audiences, 
+        and deliver measurable results for businesses worldwide.
+      </p>
+    </div>
+    
+    <div className="grid md:grid-cols-3 gap-6 mt-16">
+      <div className="text-center">
+        <div className="w-12 h-12 bg-gradient-to-r from-orange-400 to-blue-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+          <Award className="w-6 h-6 text-white" />
         </div>
-
-        <div className="space-y-8">
-          {HERO_CONTENT.sections.map((section) => (
-            <ContentSection
-              key={section.id}
-              id={section.id}
-              title={section.title}
-              content={section.content}
-            />
-          ))}
+        <h3 className="text-lg font-bold text-white mb-1">500+</h3>
+        <p className="text-gray-400 text-sm">Projects Delivered</p>
+      </div>
+      <div className="text-center">
+        <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+          <Globe className="w-6 h-6 text-white" />
         </div>
+        <h3 className="text-lg font-bold text-white mb-1">50+</h3>
+        <p className="text-gray-400 text-sm">Countries Served</p>
+      </div>
+      <div className="text-center">
+        <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-orange-400 rounded-xl flex items-center justify-center mx-auto mb-3">
+          <Rocket className="w-6 h-6 text-white" />
+        </div>
+        <h3 className="text-lg font-bold text-white mb-1">98%</h3>
+        <p className="text-gray-400 text-sm">Client Satisfaction</p>
       </div>
     </div>
-  );
-});
-
-Hero.displayName = 'Hero';
+  </div>
+</section>
+));
 
 export default Hero;
