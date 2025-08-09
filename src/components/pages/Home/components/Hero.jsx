@@ -1,54 +1,58 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowRight, Sparkles, Code, Palette, Smartphone, TrendingUp } from 'lucide-react';
+"use client";
+import React, { useState, useEffect, useMemo } from "react";
+import { ArrowRight, Sparkles, Code, Palette, Smartphone, TrendingUp } from "lucide-react";
+import CountUp from "@/components/animateComponenet/CountUp";
 
 const services = [
-  { icon: Code, name: 'Web Development' },
-  { icon: Palette, name: 'UI/UX Design' },
-  { icon: Smartphone, name: 'Mobile Apps' },
-  { icon: TrendingUp, name: 'Digital Strategy' }
+  { icon: Code, name: "Web Development" },
+  { icon: Palette, name: "UI/UX Design" },
+  { icon: Smartphone, name: "Mobile Apps" },
+  { icon: TrendingUp, name: "Digital Strategy" },
 ];
 
 const stats = [
-  { number: '150+', label: 'Projects Delivered' },
-  { number: '95%', label: 'Client Satisfaction' },
-  { number: '24/7', label: 'Support Available' }
+  { number: 150, label: "Projects Delivered", suffix: "+" },
+  { number: 95, label: "Client Satisfaction", suffix: "%" },
+  { number: null, label: "Support Available", suffix: "24/7" },
 ];
 
-const floatingElements = Array.from({ length: 6 }, (_, i) => ({
-  id: i,
-  delay: i * 0.5,
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-}));
-
-const BackgroundEffects = ({ mousePosition }) => (
-  <>
-    <div className="absolute w-full  inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(249,115,22,0.1),transparent_70%)]"></div>
-    
-    <div 
-      className="absolute inset-0 opacity-30"
-      style={{
-        background: `radial-gradient(600px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(249,115,22,0.15), transparent 40%)`
-      }}
-    />
-
-    {floatingElements.map((element) => (
+const BackgroundEffects = ({ mousePosition }) => {
+  const floatingElements = useMemo(
+    () =>
+      Array.from({ length: 6 }, (_, i) => ({
+        id: i,
+        delay: i * 0.5,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+      })),
+    []
+  );
+  return (
+    <>
+      <div className="absolute w-full inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(249,115,22,0.1),transparent_70%)]"></div>
       <div
-        key={element.id}
-        className="absolute w-1 h-1 bg-orange-400/30 rounded-full animate-pulse"
+        className="absolute inset-0 opacity-30"
         style={{
-          left: `${element.x}%`,
-          top: `${element.y}%`,
-          animationDelay: `${element.delay}s`,
-          animationDuration: '3s'
+          background: `radial-gradient(600px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(249,115,22,0.15), transparent 40%)`,
         }}
       />
-    ))}
-
-    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl animate-pulse"></div>
-    <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-  </>
-);
+      {floatingElements.map((el) => (
+        <div
+          key={el.id}
+          className="absolute w-1 h-1 bg-orange-400/30 rounded-full animate-pulse"
+          style={{
+            left: `${el.x}%`,
+            top: `${el.y}%`,
+            animationDelay: `${el.delay}s`,
+            animationDuration: "3s",
+          }}
+        />
+      ))}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+    </>
+  );
+};
 
 const Badge = () => (
   <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-600/10 border border-orange-400/20 rounded-full text-orange-400 text-[10px] md:text-xs font-medium mb-8 backdrop-blur-sm">
@@ -58,7 +62,7 @@ const Badge = () => (
 );
 
 const HeroTitle = () => (
-  <h1 className="text-3xl md:text-4xl  font-black text-white mb-6 leading-tight">
+  <h1 className="text-3xl md:text-4xl font-black text-white mb-6 leading-tight">
     We Build
     <span className="block bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent animate-pulse">
       Digital Dreams
@@ -69,7 +73,8 @@ const HeroTitle = () => (
 
 const HeroDescription = () => (
   <p className="text-sm md:text-xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
-    From stunning websites to powerful mobile apps, we craft digital experiences that captivate users and drive business growth.
+    From stunning websites to powerful mobile apps, we craft digital experiences
+    that captivate users and drive business growth.
   </p>
 );
 
@@ -86,13 +91,13 @@ const CTAButtons = () => (
 );
 
 const ServiceCard = ({ service, index }) => {
-  const IconComponent = service.icon;
+  const Icon = service.icon;
   return (
     <div
       className="group p-6 bg-gray-800/30 border border-gray-700/50 rounded-2xl hover:bg-gray-800/50 hover:border-orange-400/50 transition-all duration-300 hover:scale-105"
       style={{ animationDelay: `${index * 100}ms` }}
     >
-      <IconComponent className="w-6 md:w-8 h-6 md:h-8 text-orange-400 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300" />
+      <Icon className="w-6 md:w-8 h-6 md:h-8 text-orange-400 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300" />
       <p className="text-gray-300 text-xs md:text-sm font-medium group-hover:text-white transition-colors duration-300">
         {service.name}
       </p>
@@ -102,55 +107,66 @@ const ServiceCard = ({ service, index }) => {
 
 const ServiceGrid = () => (
   <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-16">
-    {services.map((service, index) => (
-      <ServiceCard key={index} service={service} index={index} />
+    {services.map((s, i) => (
+      <ServiceCard key={i} service={s} index={i} />
     ))}
   </div>
 );
 
-const StatCard = ({ stat, index }) => (
+const StatCard = ({ stat }) => (
   <div className="group text-center hover:scale-110 transition-transform duration-300">
     <div className="text-xl md:text-2xl font-black text-white mb-2 group-hover:text-orange-400 transition-colors duration-300">
-      {stat.number}
+      {stat.number !== null ? (
+       <span> <CountUp
+          from={0}
+          to={stat.number}
+          duration={1}
+          separator=""
+          suffix={stat.suffix}
+        />
+        {stat.suffix}</span>
+      ) : (
+        stat.suffix
+      )}
     </div>
-    <div className="text-gray-400 text-xs md:text-sm font-medium">{stat.label}</div>
+    <div className="text-gray-400 text-xs md:text-sm font-medium">
+      {stat.label}
+    </div>
   </div>
 );
 
 const StatsGrid = () => (
   <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-    {stats.map((stat, index) => (
-      <StatCard key={index} stat={stat} index={index} />
+    {stats.map((stat, i) => (
+      <StatCard key={i} stat={stat} />
     ))}
   </div>
 );
 
 const useMousePosition = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
+  const [pos, setPos] = useState({ x: 0, y: 0 });
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({
+    const handler = (e) => {
+      setPos({
         x: (e.clientX / window.innerWidth) * 100,
         y: (e.clientY / window.innerHeight) * 100,
       });
     };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handler);
+    return () => window.removeEventListener("mousemove", handler);
   }, []);
-
-  return mousePosition;
+  return pos;
 };
 
 export default function Hero() {
   const mousePosition = useMousePosition();
-
   return (
-    <section id="home" className="relative min-h-screen flex w-full items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
+    <section
+      id="home"
+      className="relative min-h-screen flex w-full items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900"
+    >
       <BackgroundEffects mousePosition={mousePosition} />
-
-      <div className=" w-full mx-auto px-6 sm:px-8 lg:px-12 py-6 text-center">
+      <div className="w-full mx-auto px-6 sm:px-8 lg:px-12 py-6 text-center">
         <Badge />
         <HeroTitle />
         <HeroDescription />
@@ -158,8 +174,6 @@ export default function Hero() {
         <ServiceGrid />
         <StatsGrid />
       </div>
-
-      {/* <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent"></div> */}
     </section>
   );
 }
