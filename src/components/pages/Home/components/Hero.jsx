@@ -84,9 +84,9 @@ const CTAButtons = () => (
       Start Your Project
       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
     </button>
-    <button className="group border-2 border-gray-600 hover:border-orange-400 text-gray-300 hover:text-white px-4 md:px-8 py-2 md:py-4 rounded-xl font-bold text-xs md:text-base transition-all duration-300 hover:bg-gray-800/50 backdrop-blur-sm">
+    {/* <button className="group border-2 border-gray-600 hover:border-orange-400 text-gray-300 hover:text-white px-4 md:px-8 py-2 md:py-4 rounded-xl font-bold text-xs md:text-base transition-all duration-300 hover:bg-gray-800/50 backdrop-blur-sm">
       View Portfolio
-    </button>
+    </button> */}
   </div>
 );
 

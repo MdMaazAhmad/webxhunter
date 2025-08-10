@@ -39,7 +39,7 @@ const featuredProjects = [
 
 export default function Feature() {
   return (
-    <section className="pt-20">
+    <section className="pt-10 md:pt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="text-orange-400 font-semibold mb-4 text-xs uppercase tracking-wide">

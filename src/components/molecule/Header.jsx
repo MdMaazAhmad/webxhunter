@@ -165,13 +165,12 @@ export default function Header() {
               {item.label}
             </button>
           ))}
-          {/* <Button 
-            type="primary" 
+          <button 
             onClick={() => router.push("/contact")}
-            className="ml-4"
+            className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white  py-1 px-4 rounded-md font-bold text-xs md:text-base transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25 flex items-center justify-center gap-3 ml-4"
           >
             Contact
-          </Button> */}
+          </button>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -213,16 +212,15 @@ export default function Header() {
               {item.label}
             </button>
           ))}
-          {/* <Button 
-            type="primary" 
-            className="w-full mt-4"
-            onClick={() => {
+          <button 
+               className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white  py-1 px-4 rounded-md font-bold text-sm md:text-base transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25 flex items-center justify-center gap-3 w-full mt-4"
+               onClick={() => {
               setIsMenuOpen(false);
               router.push("/contact");
             }}
           >
             Contact
-          </Button> */}
+          </button>
         </nav>
       </div>
 
