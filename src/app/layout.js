@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/molecule/Header";
 import Footer from "@/components/molecule/Footer";
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

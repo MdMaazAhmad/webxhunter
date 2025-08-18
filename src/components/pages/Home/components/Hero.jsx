@@ -1,7 +1,15 @@
 "use client";
 import React, { useState, useEffect, useMemo } from "react";
-import { ArrowRight, Sparkles, Code, Palette, Smartphone, TrendingUp } from "lucide-react";
+import {
+  ArrowRight,
+  Sparkles,
+  Code,
+  Palette,
+  Smartphone,
+  TrendingUp,
+} from "lucide-react";
 import CountUp from "@/components/animateComponenet/CountUp";
+import { useRouter } from "next/navigation";
 
 const services = [
   { icon: Code, name: "Web Development" },
@@ -73,14 +81,15 @@ const HeroTitle = () => (
 
 const HeroDescription = () => (
   <p className="text-sm md:text-xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
-    From stunning websites to powerful mobile apps and result-driven marketing campaigns, Web x Hunter crafts digital experiences that captivate your audience and fuel business growth.
-
+    From stunning websites to powerful mobile apps and result-driven marketing
+    campaigns, Web x Hunter crafts digital experiences that captivate your
+    audience and fuel business growth.
   </p>
 );
 
-const CTAButtons = () => (
-  <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-    <button className="group bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-4 md:px-8 py-2 md:py-4 rounded-xl font-bold text-xs md:text-base transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25 flex items-center justify-center gap-3">
+const CTAButtons = ({onClick}) => (
+  <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 ">
+    <button className="group cursor-pointer bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-4 md:px-8 py-2 md:py-4 rounded-xl font-bold text-xs md:text-base transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25 flex items-center justify-center gap-3" onClick={onClick}>
       Start Your Project
       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
     </button>
@@ -117,14 +126,17 @@ const StatCard = ({ stat }) => (
   <div className="group text-center hover:scale-110 transition-transform duration-300">
     <div className="text-xl md:text-2xl font-black text-white mb-2 group-hover:text-orange-400 transition-colors duration-300">
       {stat.number !== null ? (
-       <span> <CountUp
-          from={0}
-          to={stat.number}
-          duration={1}
-          separator=""
-          suffix={stat.suffix}
-        />
-        {stat.suffix}</span>
+        <span>
+          {" "}
+          <CountUp
+            from={0}
+            to={stat.number}
+            duration={1}
+            separator=""
+            suffix={stat.suffix}
+          />
+          {stat.suffix}
+        </span>
       ) : (
         stat.suffix
       )}
@@ -160,6 +172,7 @@ const useMousePosition = () => {
 
 export default function Hero() {
   const mousePosition = useMousePosition();
+  const router = useRouter();
   return (
     <section
       id="home"
@@ -170,7 +183,7 @@ export default function Hero() {
         <Badge />
         <HeroTitle />
         <HeroDescription />
-        <CTAButtons />
+        <CTAButtons onClick={()=>router.push('/contact')}/>
         <ServiceGrid />
         <StatsGrid />
       </div>

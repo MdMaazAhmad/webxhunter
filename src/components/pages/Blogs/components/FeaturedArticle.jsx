@@ -7,7 +7,7 @@ const FeaturedArticles = memo(() => {
     const featuredPosts = allPosts.slice(0, 3);
   
     return (
-      <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      <section className="py-20 ">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">

@@ -1,14 +1,14 @@
 "use client";
 import { Button } from "@/components/atom/Button";
-import Logo from "@/images/logo.svg";
 import { useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import Logo from "@/images/WebXHunterLogo2.png"
 
 const NAV_ITEMS = [
-  { label: "Home", href: "/#home", section: "home" },
+  { label: "Home", href: "/", section: "home" },
   { label: "About us", href: "/about", section: "about" },
   { label: "Service", href: "/#service", section: "service", type: "section" },
-  { label: "Blogs", href: "/blog" },
+  { label: "Blogs", href: "/blog", section: "blog" },
 ];
 
 const smoothScroll = (id) => {
@@ -40,7 +40,7 @@ export default function Header() {
     };
   }, []);
 
-  // Enhanced intersection observer and hash handling (from ML-experts)
+  // Enhanced intersection observer and hash handling
   useEffect(() => {
     if (typeof window !== "undefined") {
       const handleHashChange = () => {
@@ -94,36 +94,85 @@ export default function Header() {
   const handleNavClick = (item, e) => {
     e.preventDefault();
     setIsMenuOpen(false);
-    setCurrentHash(item.href);
     
+    // Handle section-based navigation (like Service)
     if (item.type === "section") {
       const sectionId = item.href.replace("/#", "");
+      setCurrentHash(item.href);
       
       if (pathname !== "/") {
-        router.push(item.href);
+        router.push("/");
         // Wait for navigation to complete, then scroll
-        setTimeout(() => smoothScroll(sectionId), 150);
+        setTimeout(() => {
+          smoothScroll(sectionId);
+          // Update hash after navigation
+          window.history.pushState(null, null, `#${sectionId}`);
+          setCurrentHash(`/#${sectionId}`);
+        }, 150);
       } else {
         // Update URL hash
         window.history.pushState(null, null, `#${sectionId}`);
         setCurrentHash(`/#${sectionId}`);
         smoothScroll(sectionId);
       }
-    } else {
+    } 
+    // Handle regular page navigation (Home, About, Blogs, etc.)
+    else {
+      // Clear hash state for non-section navigation
+      setCurrentHash(item.href);
+      setActiveSection(item.section || "home");
+      
+      // Navigate to the page
       router.push(item.href);
+      
+      // Clear any hash from URL if navigating to a regular page
+      if (item.href === "/" && window.location.hash) {
+        window.history.pushState(null, null, "/");
+      }
     }
   };
 
-  // Enhanced active state detection (similar to ML-experts getMenuTextColor logic)
+  // Fixed logo click handler
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    try {
+      // Clear any existing hash
+      if (window.location.hash) {
+        window.history.pushState(null, null, "/");
+      }
+      
+      // Reset state
+      setCurrentHash("/");
+      setActiveSection("home");
+      setIsMenuOpen(false);
+      
+      // Navigate to home
+      if (pathname !== "/") {
+        router.push("/");
+      } else {
+        // If already on home page, scroll to top
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    } catch (error) {
+      console.error("Navigation error:", error);
+      // Fallback: use window.location
+      window.location.href = "/";
+    }
+  };
+
+  // Enhanced active state detection
   const isActive = (item) => {
     if (item.type === "section") {
       const sectionId = item.href.replace("/#", "");
       // Check if current section matches OR if the hash matches
       return (pathname === "/" && activeSection === sectionId) || 
-             currentHash === item.href || 
-             pathname === item.href;
+             currentHash === item.href;
     }
-    return pathname === item.href || currentHash === item.href;
+    
+    // For regular pages, check pathname match
+    return pathname === item.href;
   };
 
   const getNavItemClass = (item) => {
@@ -139,23 +188,19 @@ export default function Header() {
     <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
       isScrolled ? "bg-black/90 backdrop-blur-md shadow-lg" : "bg-transparent"
     }`}>
-      <div className="flex items-center justify-between px-4 lg:px-8 py-4">
+      <div className="flex items-center justify-between px-4 lg:px-8 py-1">
         
-        {/* Logo */}
-        <div 
-          className="flex items-center gap-3 text-white cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={() => {
-            router.push("/");
-            setCurrentHash("/");
-            setActiveSection("home");
-          }}
+        {/* Logo - Fixed click handler */}
+        <button 
+          className="flex items-center gap-3 text-white cursor-pointer hover:opacity-80 transition-opacity focus:outline-none focus:opacity-80"
+          onClick={handleLogoClick}
+          type="button"
         >
-          <img src={Logo.src} alt="Logo" className="w-4 h-4" />
-          <h1 className="text-lg font-bold">Web x Hunter</h1>
-        </div>
+          <img src={Logo.src} alt="Logo" className="w-[18%] bg-blend-color-burn" />
+        </button>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-2">
+        <nav className="hidden lg:flex items-center gap-2 whitespace-nowrap py-2">
           {NAV_ITEMS.map((item) => (
             <button
               key={item.href}
@@ -213,8 +258,8 @@ export default function Header() {
             </button>
           ))}
           <button 
-               className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white  py-1 px-4 rounded-md font-bold text-sm md:text-base transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25 flex items-center justify-center gap-3 w-full mt-4"
-               onClick={() => {
+            className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white  py-1 px-4 rounded-md font-bold text-sm md:text-base transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25 flex items-center justify-center gap-3 w-full mt-4"
+            onClick={() => {
               setIsMenuOpen(false);
               router.push("/contact");
             }}
