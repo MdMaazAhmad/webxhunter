@@ -196,7 +196,7 @@ export default function Header() {
           onClick={handleLogoClick}
           type="button"
         >
-          <img src={Logo.src} alt="Logo" className="w-[18%] bg-blend-color-burn" />
+          <img src={Logo.src} alt="Logo" className="w-[30%] md:w-[18%] bg-blend-color-burn" />
         </button>
 
         {/* Desktop Nav */}
