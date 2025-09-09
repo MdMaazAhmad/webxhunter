@@ -26,13 +26,13 @@ export default function Elevate() {
               Let's Get Started
             </p>
 
-            <h1 className="text-white text-2xl md:text-3xl font-bold leading-tight tracking-tight max-w-3xl mx-auto">
+            <h2 className="text-white text-2xl md:text-3xl font-bold leading-tight tracking-tight max-w-3xl mx-auto">
               Ready to{" "}
               <span className="bg-gradient-to-r from-orange-400 to-blue-500 bg-clip-text text-transparent">
                 Elevate
               </span>{" "}
               Your Online Presence?
-            </h1>
+            </h2>
           </div>
 
           <p className="text-gray-300 text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
