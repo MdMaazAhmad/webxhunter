@@ -71,11 +71,11 @@ const Badge = () => (
 
 const HeroTitle = () => (
   <h1 className="text-3xl md:text-4xl font-black text-white mb-6 leading-tight">
-    We Build
+    Crafting
     <span className="block bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent animate-pulse">
-      Digital Dreams
+      Digital Success
     </span>
-    Into Reality
+    Stories
   </h1>
 );
 
@@ -87,9 +87,12 @@ const HeroDescription = () => (
   </p>
 );
 
-const CTAButtons = ({onClick}) => (
+const CTAButtons = ({ onClick }) => (
   <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 ">
-    <button className="group cursor-pointer bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-4 md:px-8 py-2 md:py-4 rounded-xl font-bold text-xs md:text-base transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25 flex items-center justify-center gap-3" onClick={onClick}>
+    <button
+      className="group cursor-pointer bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-4 md:px-8 py-2 md:py-4 rounded-xl font-bold text-xs md:text-base transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25 flex items-center justify-center gap-3"
+      onClick={onClick}
+    >
       Start Your Project
       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
     </button>
@@ -183,7 +186,7 @@ export default function Hero() {
         <Badge />
         <HeroTitle />
         <HeroDescription />
-        <CTAButtons onClick={()=>router.push('/contact')}/>
+        <CTAButtons onClick={() => router.push("/contact")} />
         <ServiceGrid />
         <StatsGrid />
       </div>
