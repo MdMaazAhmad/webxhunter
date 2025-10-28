@@ -87,8 +87,8 @@ const HeroDescription = () => (
   </p>
 );
 
-const CTAButtons = ({ onClick }) => (
-  <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 ">
+const CTAButtons = ( {onClick} ) => (
+  <div className="flex flex-col cursor-pointer sm:flex-row gap-4 justify-center mb-16 relative z-10"onClick={onClick}>
     <button
       className="group cursor-pointer bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-4 md:px-8 py-2 md:py-4 rounded-xl font-bold text-xs md:text-base transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25 flex items-center justify-center gap-3"
       onClick={onClick}
@@ -106,7 +106,7 @@ const ServiceCard = ({ service, index }) => {
   const Icon = service.icon;
   return (
     <div
-      className="group p-6 bg-gray-800/30 border border-gray-700/50 rounded-2xl hover:bg-gray-800/50 hover:border-orange-400/50 transition-all duration-300 hover:scale-105"
+      className="group p-6  bg-gray-800/30 border border-gray-700/50 rounded-2xl hover:bg-gray-800/50 hover:border-orange-400/50 transition-all duration-300 hover:scale-105"
       style={{ animationDelay: `${index * 100}ms` }}
     >
       <Icon className="w-6 md:w-8 h-6 md:h-8 text-orange-400 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300" />
@@ -161,14 +161,16 @@ const StatsGrid = () => (
 const useMousePosition = () => {
   const [pos, setPos] = useState({ x: 0, y: 0 });
   useEffect(() => {
-    const handler = (e) => {
-      setPos({
-        x: (e.clientX / window.innerWidth) * 100,
-        y: (e.clientY / window.innerHeight) * 100,
-      });
-    };
-    window.addEventListener("mousemove", handler);
-    return () => window.removeEventListener("mousemove", handler);
+    if (typeof window !== 'undefined') {
+      const handler = (e) => {
+        setPos({
+          x: (e.clientX / window.innerWidth) * 100,
+          y: (e.clientY / window.innerHeight) * 100,
+        });
+      };
+      window.addEventListener("mousemove", handler);
+      return () => window.removeEventListener("mousemove", handler);
+    }
   }, []);
   return pos;
 };

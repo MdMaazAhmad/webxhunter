@@ -2,6 +2,7 @@ import React from 'react';
 import { Star } from 'lucide-react';
 import ChandanBulani from "@/images/Chandan Bulani.webp"
 import Danish from "@/images/Danish.png"
+import Kg from "@/images/shotsBykg.png"
 
 const testimonials = [
   {
@@ -22,11 +23,13 @@ const testimonials = [
   },
   {
     id: 3,
-    name: "Chandan Bulani",
-    date: "2023-06-10",
+    name: "Kamal Goswami",
+    date: "2025-09-10",
     rating: 5,
-    avatar: ChandanBulani.src,
-    testimonial: "Working with Web X Hunter on our MHM Studios website was a fantastic experience from start to finish. Their team captured our brand’s creative essence perfectly, delivering a modern, visually appealing, and highly functional website that truly reflects our work in the media and production industry."
+    avatar: Kg.src,
+    testimonial: "A huge thanks to WebxHunter for bringing my vision to life with a sleek, cinematic, and user-friendly portfolio. They perfectly captured the vibe I wanted — clean design, smooth navigation, and storytelling that truly represents my brand. Couldn’t be happier with the result!  — Shots by KG"
+
+
   }
 ];
 

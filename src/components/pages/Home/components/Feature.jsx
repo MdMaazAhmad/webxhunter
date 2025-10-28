@@ -2,21 +2,13 @@ import React from "react";
 import UranLayon from "@/images/UrbanLayon.png";
 import GoSkinly from "@/images/GoSkinly.png";
 import MHMStudios from "@/images/MHMStudios.png";
+import Portfolio from "@/images/Portfolio.png";
 import Link from "next/link";
 
 const featuredProjects = [
+ 
   {
     id: 1,
-    title: "Skinly",
-    description:
-      "A stylish and engaging e-commerce platform showcasing innovative gadgets and their brand.",
-    category: "E-commerce",
-    image: GoSkinly.src,
-    color: "from-emerald-500 to-cyan-500",
-    url: "https://goskinly.com/",
-  },
-  {
-    id: 2,
     title: "Urban Layon",
     description:
       "A modern and visually appealing online presence for a leading fashion brand.",
@@ -26,7 +18,27 @@ const featuredProjects = [
     color: "from-red-500 to-orange-500",
   },
   {
+    id: 2,
+    title: "SHOTS BY KG",
+    description:
+      "An elegant portfolio showcasing stunning photography and cinematography work with immersive visuals.",
+    category: "Portfolio",
+    url:"https://www.shotsbykg.com/",
+    image: Portfolio.src,
+    color: "from-blue-500 to-indigo-500",
+  },
+  {
     id: 3,
+    title: "Skinly",
+    description:
+      "A stylish and engaging e-commerce platform showcasing innovative gadgets and their brand.",
+    category: "E-commerce",
+    image: GoSkinly.src,
+    color: "from-emerald-500 to-cyan-500",
+    url: "https://goskinly.com/",
+  },
+  {
+    id: 4,
     title: "MHM Studios",
     description:
       "A secure and informative website for a video production house and digital marketing agency.",
@@ -35,6 +47,7 @@ const featuredProjects = [
     image: MHMStudios.src,
     color: "from-purple-500 to-pink-500",
   },
+ 
 ];
 
 export default function Feature() {
@@ -54,7 +67,7 @@ export default function Feature() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
           {featuredProjects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
@@ -76,10 +89,10 @@ function ProjectCard({ project }) {
 
         <div
           className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-80 transition-opacity duration-300`}
-        ></div>
+        />
 
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          {project.url ? (
+        {project.url && (
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <Link
               href={project.url}
               target="_blank"
@@ -88,15 +101,8 @@ function ProjectCard({ project }) {
             >
               View Project
             </Link>
-          ) : (
-            <button
-              className="bg-white/80 text-xs text-gray-700 px-4 py-2 rounded-lg font-semibold cursor-not-allowed"
-              disabled
-            >
-              View Project
-            </button>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       <div className="space-y-2">
