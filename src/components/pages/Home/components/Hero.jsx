@@ -1,52 +1,105 @@
-import { memo } from 'react';
-import { Clock, Shield, Zap } from 'lucide-react';
+"use client";
+import { useState, useEffect, useMemo } from "react";
+import { ArrowRight, Sparkles, Code2, Monitor, Search, Zap } from "lucide-react";
+import CountUp from "@/components/animateComponenet/CountUp";
+import { useRouter } from "next/navigation";
 
-const Hero = memo(() => (
-  <section className="relative py-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
-    <div className="absolute inset-0 opacity-20">
-      <div className="absolute top-20 left-20 w-96 h-96 bg-orange-400/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-20 right-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-    </div>
+const services = [
+  { icon: Code2, name: "Custom Development" },
+  { icon: Monitor, name: "Responsive Design" },
+  { icon: Search, name: "SEO Ready" },
+  { icon: Zap, name: "Fast Delivery" },
+];
 
-    <div className="relative max-w-5xl mx-auto px-6">
-      <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
-          Crafting <br className="md:hidden" />
-          <span className="bg-gradient-to-r from-orange-500 to-orange-400 bg-clip-text text-transparent">
+const stats = [
+  { number: 50, label: "Projects Delivered", suffix: "+" },
+  { number: 90, label: "Client Satisfaction", suffix: "%" },
+  { number: null, label: "Support Available", suffix: "24/7" },
+];
+
+const useMousePosition = () => {
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  useEffect(() => {
+    const h = (e) => setPos({ x: (e.clientX / window.innerWidth) * 100, y: (e.clientY / window.innerHeight) * 100 });
+    window.addEventListener("mousemove", h);
+    return () => window.removeEventListener("mousemove", h);
+  }, []);
+  return pos;
+};
+
+export default function Hero() {
+  const mousePosition = useMousePosition();
+  const router = useRouter();
+
+  const floatingElements = useMemo(
+    () => Array.from({ length: 6 }, (_, i) => ({ id: i, delay: i * 0.5, x: Math.random() * 100, y: Math.random() * 100 })),
+    []
+  );
+
+  return (
+    <section id="home" className="relative min-h-screen flex w-full items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(249,115,22,0.1),transparent_70%)]" />
+      <div className="absolute inset-0 opacity-30" style={{ background: `radial-gradient(600px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(249,115,22,0.15), transparent 40%)` }} />
+      {floatingElements.map((el) => (
+        <div key={el.id} className="absolute w-1 h-1 bg-orange-400/30 rounded-full animate-pulse" style={{ left: `${el.x}%`, top: `${el.y}%`, animationDelay: `${el.delay}s`, animationDuration: "3s" }} />
+      ))}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-800/10 rounded-full blur-3xl animate-pulse delay-1000" />
+
+      <div className="w-full mx-auto px-6 sm:px-8 lg:px-12 py-6 text-center">
+        <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-600/10 border border-orange-400/20 rounded-full text-orange-400 text-[10px] md:text-xs font-medium mb-8 backdrop-blur-sm">
+          <Sparkles className="w-4 h-4" />
+          Web Development Soultion
+        </div>
+
+        <h1 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
+          Crafting
+          <span className="block bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
             Digital Success
-          </span><br />
+          </span>
           Stories
         </h1>
-        <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
+
+        <p className="text-sm md:text-lg text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
           From stunning business websites to powerful e-commerce stores — Web x Hunter builds digital experiences that captivate your audience and drive measurable business growth.
         </p>
-      </div>
 
-      <div className="grid md:grid-cols-3 gap-6 mt-16">
-        <div className="text-center">
-          <div className="w-12 h-12 bg-orange-500/10 border border-orange-500/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-            <Clock className="w-6 h-6 text-orange-500" />
-          </div>
-          <h3 className="text-lg font-bold text-white mb-1">15-20 Days</h3>
-          <p className="text-gray-400 text-sm">Fast Delivery</p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 relative z-10">
+          <button
+            onClick={() => router.push("/contact")}
+            className="group cursor-pointer bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-4 md:px-8 py-2 md:py-4 rounded-xl font-bold text-xs md:text-base transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25 flex items-center justify-center gap-3"
+          >
+            Start Your Project
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+          </button>
         </div>
-        <div className="text-center">
-          <div className="w-12 h-12 bg-orange-500/10 border border-orange-500/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-            <Shield className="w-6 h-6 text-orange-500" />
-          </div>
-          <h3 className="text-lg font-bold text-white mb-1">Secure & Reliable</h3>
-          <p className="text-gray-400 text-sm">SSL & Cloud Hosting</p>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-16">
+          {services.map((s, i) => {
+            const Icon = s.icon;
+            return (
+              <div key={i} className="group p-6 bg-gray-800/30 border border-gray-700/50 rounded-2xl hover:bg-gray-800/50 hover:border-orange-400/50 transition-all duration-300 hover:scale-105">
+                <Icon className="w-6 md:w-8 h-6 md:h-8 text-orange-400 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300" />
+                <p className="text-gray-300 text-xs md:text-sm font-medium group-hover:text-white transition-colors duration-300">{s.name}</p>
+              </div>
+            );
+          })}
         </div>
-        <div className="text-center">
-          <div className="w-12 h-12 bg-orange-500/10 border border-orange-500/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-            <Zap className="w-6 h-6 text-orange-500" />
-          </div>
-          <h3 className="text-lg font-bold text-white mb-1">SEO Ready</h3>
-          <p className="text-gray-400 text-sm">Optimized from Day One</p>
+
+        <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+          {stats.map((stat, i) => (
+            <div key={i} className="group text-center hover:scale-110 transition-transform duration-300">
+              <div className="text-xl md:text-2xl font-black text-white mb-2 group-hover:text-orange-400 transition-colors duration-300">
+                {stat.number !== null
+                  ? <span><CountUp from={0} to={stat.number} duration={1} separator="" suffix={stat.suffix} />{stat.suffix}</span>
+                  : stat.suffix
+                }
+              </div>
+              <div className="text-gray-400 text-xs md:text-sm font-medium">{stat.label}</div>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
-  </section>
-));
-
-export default Hero;
+    </section>
+  );
+}
