@@ -1,60 +1,34 @@
-// src/components/BlogPagination.js
-import React from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-const BlogPagination = ({ currentPage, totalPages, onPageChange }) => {
+export default function BlogPagination({ currentPage, totalPages, onPageChange }) {
     if (totalPages <= 1) return null;
 
     const getVisiblePages = () => {
-        if (totalPages <= 7) {
-            return Array.from({ length: totalPages }, (_, i) => i + 1);
-        }
-        if (currentPage <= 4) {
-            return [1, 2, 3, 4, 5, '...', totalPages];
-        }
-        if (currentPage > totalPages - 4) {
-            return [1, '...', totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
-        }
+        if (totalPages <= 5) return Array.from({ length: totalPages }, (_, i) => i + 1);
+        if (currentPage <= 3) return [1, 2, 3, 4, '...', totalPages];
+        if (currentPage > totalPages - 3) return [1, '...', totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
         return [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages];
     };
 
-    const pages = getVisiblePages();
-
-    const PageButton = ({ children, onClick, disabled, isActive }) => (
-        <button
-            onClick={onClick}
-            disabled={disabled}
-            className={`flex items-center justify-center w-10 h-10 rounded-lg font-semibold text-sm transition-all duration-300 ${
-                disabled ? 'border-gray-700 text-gray-500 cursor-not-allowed' :
-                isActive ? 'bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transform hover:-translate-y-1 transition-all duration-300 transform scale-110 shadow-lg' :
-                'text-gray-300 border-2 border-gray-600 hover:border-orange-400 hover:text-orange-400 hover:bg-orange-400/10'
-            }`}
-        >
-            {children}
-        </button>
-    );
-
     return (
-        <div className="flex items-center justify-center py-10">
+        <div className="flex items-center justify-center py-12">
             <div className="flex items-center gap-2">
-                <PageButton onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1}>
+                <button onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1} className="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-700 text-gray-400 hover:border-orange-500 hover:text-orange-500 disabled:opacity-50 disabled:hover:border-gray-700 disabled:hover:text-gray-400 transition-all">
                     <ChevronLeft size={18} />
-                </PageButton>
-                {pages.map((page, index) =>
+                </button>
+                {getVisiblePages().map((page, index) =>
                     page === '...' ? (
-                        <span key={index} className="text-gray-500 px-2">...</span>
+                        <span key={index} className="text-gray-600 px-2">...</span>
                     ) : (
-                        <PageButton key={index} onClick={() => onPageChange(page)} isActive={currentPage === page}>
+                        <button key={index} onClick={() => onPageChange(page)} className={`w-10 h-10 rounded-lg text-sm font-medium transition-all ${currentPage === page ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/25' : 'border border-gray-700 text-gray-400 hover:border-orange-500 hover:text-orange-500'}`}>
                             {page}
-                        </PageButton>
+                        </button>
                     )
                 )}
-                <PageButton onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages}>
+                <button onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages} className="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-700 text-gray-400 hover:border-orange-500 hover:text-orange-500 disabled:opacity-50 disabled:hover:border-gray-700 disabled:hover:text-gray-400 transition-all">
                     <ChevronRight size={18} />
-                </PageButton>
+                </button>
             </div>
         </div>
     );
-};
-
-export default BlogPagination;
+}

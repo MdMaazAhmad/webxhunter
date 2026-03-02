@@ -1,96 +1,49 @@
 import { memo } from 'react';
-import { Code, Palette, TrendingUp, Zap,Smartphone } from 'lucide-react';
 
 const Expertise = memo(() => {
-    const services = [
-        {
-          icon: Palette,
-          title: "Digital Design",
-          description:
-            "Creating stunning visual experiences that captivate audiences and drive conversions through strategic design thinking.",
-          features: ["UI/UX Design", "Brand Identity", "Design Systems", "Prototyping"],
-          gradient: "from-orange-500 to-red-500",
-        },
-        {
-          icon: Code,
-          title: "Web Development",
-          description:
-            "Building lightning-fast, scalable applications with modern technologies and best practices for optimal performance.",
-          features: ["React/Next.js", "Node.js", "Cloud Solutions", "API Development"],
-          gradient: "from-blue-500 to-cyan-500",
-        },
-        {
-          icon: Smartphone, // You can choose a mobile app-related icon
-          title: "App Development",
-          description:
-            "Designing and developing high-performance mobile applications that deliver seamless experiences on Android and iOS.",
-          features: ["React Native", "Flutter", "API Integration", "App Store & Play Store Deployment"],
-          gradient: "from-yellow-500 to-orange-500",
-        },
-        {
-          icon: TrendingUp,
-          title: "Digital Marketing",
-          description:
-            "Driving sustainable growth through data-driven marketing strategies and performance optimization techniques.",
-          features: ["SEO Optimization", "Content Strategy", "Analytics", "Conversion Optimization", "Google & Meta Ads"],
-          gradient: "from-green-500 to-emerald-500",
-        },
-        {
-          icon: Zap,
-          title: "Performance",
-          description:
-            "Optimizing every aspect for maximum speed, efficiency, and user satisfaction across all platforms and devices.",
-          features: ["Core Web Vitals", "Mobile First", "CDN Integration", "Speed Optimization"],
-          gradient: "from-purple-500 to-pink-500",
-        },
-      ];
-      
+  const services = [
+    { num: "01", title: "Business / Corporate Website", desc: "Professional, credibility-building websites for companies of all sizes. Custom design, service pages, contact forms, and fully optimized for Google search from day one." },
+    { num: "02", title: "E-Commerce Store — Shopify", desc: "Feature-rich online stores on the world's leading e-commerce platform. Product management, secure checkout, payment gateway, and a mobile-first shopping experience." },
+    { num: "03", title: "E-Commerce — Custom Coded", desc: "Fully custom-built e-commerce solutions for businesses that need functionality beyond standard platforms. Tailored entirely to your workflow, brand, and customers." },
+    { num: "04", title: "Multivendor Marketplace", desc: "A complete marketplace where multiple vendors can register, list products, and manage their storefronts independently. Perfect for aggregators and online bazaars." },
+    { num: "05", title: "Portfolio / Showcase Website", desc: "Elegant, visually-driven websites for creatives, photographers, studios, and agencies. Built to showcase your best work and attract exactly the right clients." },
+    { num: "06", title: "Landing Page / Lead Generation", desc: "High-converting single-page websites for campaigns, product launches, or lead capture. Speed-optimized, mobile-first, and focused on turning visitors into customers." }
+  ];
 
   return (
     <section className="py-20 bg-black relative overflow-hidden">
-    <div className="absolute inset-0 opacity-10">
-      <div className="absolute top-20 left-20 w-96 h-96 bg-orange-400/20 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-20 right-20 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-    </div>
-    
-    <div className="relative max-w-5xl mx-auto px-6">
-      <div className="text-center mb-12">
-        <h2 className="text-xl md:text-2xl font-bold text-white mb-4">
-          Our <span className="text-orange-400">Expertise</span>
-        </h2>
-        <p className="text-sm md:text-base text-gray-300 max-w-2xl mx-auto">
-          Comprehensive digital solutions powered by cutting-edge technology and creative excellence
-        </p>
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
+        <div className="absolute top-20 left-20 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl"></div>
       </div>
-      
-      <div className="grid md:grid-cols-2 gap-6">
-        {services.map((service, index) => (
-          <div 
-            key={index}
-            className="group bg-gradient-to-br from-gray-900/80 to-gray-800/40 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 hover:border-orange-500/50 transition-all duration-500 hover:transform hover:scale-105"
-          >
-            <div className="relative">
-              <div className={`w-12 h-12 bg-gradient-to-r ${service.gradient} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                <service.icon className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-lg font-bold text-white mb-3">{service.title}</h3>
-              <p className="text-gray-300 text-sm mb-4 leading-relaxed">{service.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {service.features.map((feature, idx) => (
-                  <span 
-                    key={idx}
-                    className="px-3 py-1 bg-orange-500/10 text-orange-400 text-xs rounded-full border border-orange-500/20 hover:bg-orange-500/20 transition-colors duration-300"
-                  >
-                    {feature}
-                  </span>
-                ))}
+
+      <div className="relative max-w-5xl mx-auto px-6">
+        <div className="mb-12">
+          <div className="inline-flex items-center gap-2 mb-4">
+            <div className="w-6 h-0.5 bg-orange-500 rounded-full"></div>
+            <span className="text-orange-500 text-xs font-mono tracking-[0.2em] uppercase">What We Build</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
+            Every Type of Website,<br />
+            <span className="text-orange-500">Built Right</span>
+          </h2>
+          <p className="text-sm md:text-base text-gray-400 max-w-2xl font-light leading-relaxed">
+            We specialize in Shopify and custom-coded websites — crafted to perform, convert, and grow with your business. Here's what we build.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-4">
+          {services.map((service, index) => (
+            <div key={index} className="bg-gray-900 border border-white/5 rounded-xl p-6 flex gap-5 hover:border-orange-500/30 transition-colors duration-300">
+              <span className="text-3xl font-extrabold text-orange-500/20 leading-none min-w-[32px]">{service.num}</span>
+              <div>
+                <h3 className="text-sm font-semibold text-white mb-2 tracking-wide">{service.title}</h3>
+                <p className="text-xs text-gray-400 leading-relaxed font-light">{service.desc}</p>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
   );
 });
 

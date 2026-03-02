@@ -1,17 +1,15 @@
 'use client'
 import React, { useState, useMemo } from 'react';
 import { allPosts, POSTS_PER_PAGE } from './post';
-import BlogHeader from './components/BlogHeader';
-import FeaturedArticles from './components/FeaturedArticle';
-import BlogPostsList from './components/BlogPostsList';
-import BlogSidebar from './components/BlogSidebar';
-import BlogPagination from './components/BlogPagination';
+import BlogHeader from '@/components/pages/Blogs/components/BlogHeader';
+import FeaturedArticles from '@/components/pages/Blogs/components/FeaturedArticle';
+import BlogPostsList from '@/components/pages/Blogs/components/BlogPostsList';
+import BlogSidebar from '@/components/pages/Blogs/components/BlogSidebar';
+import BlogPagination from '@/components/pages/Blogs/components/BlogPagination';
 
 export default function BlogPage() {
   const [currentPage, setCurrentPage] = useState(1);
-
   const featuredPosts = useMemo(() => allPosts.filter(post => post.featured), []);
-
   const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
   const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
   const endIndex = startIndex + POSTS_PER_PAGE;
@@ -25,33 +23,26 @@ export default function BlogPage() {
   };
 
   return (
-    <div className="bg-black min-h-screen font-sans">
+    <div className="bg-black min-h-screen font-sans selection:bg-orange-500/30">
       <BlogHeader totalPosts={allPosts.length} startIndex={startIndex} endIndex={endIndex} />
-      
       <FeaturedArticles articles={featuredPosts} />
-
-      <main className="py-16">
-        <div className="max-w-6xl mx-auto px-4">
-            <div className="flex items-center justify-between mb-8">
-                <h2 className="text-2xl font-bold text-white">Latest Articles</h2>
-                <div className="text-gray-400 text-xs">Page {currentPage} of {totalPages}</div>
+      <main className="py-12">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-center justify-between mb-8 border-b border-gray-800 pb-4">
+            <h2 className="text-2xl font-bold text-white tracking-tight">Latest Articles</h2>
+            <div className="text-gray-500 text-xs font-mono uppercase tracking-widest">Page {currentPage} of {totalPages}</div>
+          </div>
+          <div className="grid lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+              <BlogPostsList posts={currentPosts} />
             </div>
-            <div className="grid lg:grid-cols-3 gap-8">
-                <div className="lg:col-span-2">
-                    <BlogPostsList posts={currentPosts} />
-                </div>
-                <div className="lg:col-span-1">
-                    <BlogSidebar allPosts={allPosts} />
-                </div>
+            <div className="lg:col-span-1">
+              <BlogSidebar allPosts={allPosts} />
             </div>
+          </div>
         </div>
       </main>
-
-      <BlogPagination 
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+      <BlogPagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
     </div>
   );
 }

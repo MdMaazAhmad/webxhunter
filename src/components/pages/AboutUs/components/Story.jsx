@@ -1,60 +1,42 @@
 import { memo } from 'react';
-import { Target, Zap, CheckCircle, Calendar } from 'lucide-react';
 
-const Story = memo(() => (
+const Story = memo(() => {
+  const steps = [
+    { num: "01", title: "Discovery & Free Consultation", desc: "We learn your business, goals, audience, and competitors — laying the foundation for everything that follows." },
+    { num: "02", title: "Design & Prototyping", desc: "Wireframes and visual mockups reviewed and approved before a single line of code is written." },
+    { num: "03", title: "Development & Integration", desc: "Built on Shopify or custom code with all features, plugins, and payment systems fully integrated." },
+    { num: "04", title: "Testing & Quality Assurance", desc: "Tested across all devices and browsers for speed, security, and flawless functionality." },
+    { num: "05", title: "Launch & Deployment", desc: "Domain configured, hosting live, Google Search Console submitted — your website goes live." },
+    { num: "06", title: "1 Year Free Support", desc: "Free technical support for a full year post-launch. We're with you every step of the way." }
+  ];
+
+  return (
     <section className="py-20 bg-gray-900">
-    <div className="max-w-5xl mx-auto px-6">
-      <div className="grid lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <div className="inline-flex items-center px-3 py-1 rounded-full bg-orange-100/10 text-orange-400 text-xs font-medium mb-6">
-            <Calendar className="w-3 h-3 mr-2" />
-            Founded in 2020
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="mb-12">
+          <div className="inline-flex items-center gap-2 mb-4">
+            <div className="w-6 h-0.5 bg-orange-500 rounded-full"></div>
+            <span className="text-orange-500 text-xs font-mono tracking-[0.2em] uppercase">How We Work</span>
           </div>
-          <h2 className="text-xl md:text-2xl font-bold text-white mb-6">
-            Our Journey to 
-            <span className="text-orange-400"> Digital Innovation</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+            Our 6-Step Process
           </h2>
-          <div className="space-y-4 text-sm text-gray-300 mb-6">
-            <p>
-            Founded with a vision to bridge the gap between creative design and cutting-edge technology, Web x Hunter has evolved from a passionate startup into a globally recognized IT company.
-            </p>
-            <p>
-            We believe in the power of collaboration, innovation, and the relentless pursuit of excellence. Our team combines technical expertise with creative flair to deliver solutions that exceed expectations.
-            </p>
-          </div>
-          <div className="space-y-3">
-            <div className="flex items-center">
-              <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-              <span className="text-gray-300 text-sm">Started with a mission to democratize digital excellence</span>
-            </div>
-            <div className="flex items-center">
-              <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-              <span className="text-gray-300 text-sm">Expanded to serve clients in 3+ countries worldwide</span>
-            </div>
-            <div className="flex items-center">
-              <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-              <span className="text-gray-300 text-sm">Built a team of 10+ world-class professionals</span>
-            </div>
-          </div>
         </div>
-        
-        <div className="relative">
-          <div className="grid grid-cols-1 gap-4">
-            <div className="bg-gradient-to-br from-orange-500/20 to-transparent rounded-xl p-6 backdrop-blur-sm border border-orange-500/20 transform hover:scale-105 transition-all duration-300">
-              <Target className="w-8 h-8 text-orange-400 mb-3" />
-              <h4 className="text-lg font-bold text-white mb-2">Mission</h4>
-              <p className="text-gray-300 text-sm">Empowering businesses through innovative digital solutions that drive real growth and meaningful impact.</p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+          {steps.map((step, index) => (
+            <div key={index} className="flex items-start gap-6 border-b border-white/5 pb-6 last:border-0 md:last:border-b-0">
+              <span className="text-3xl font-extrabold text-orange-500/30 leading-none">{step.num}</span>
+              <div>
+                <h4 className="text-base font-semibold text-white mb-2">{step.title}</h4>
+                <p className="text-sm text-gray-400 leading-relaxed">{step.desc}</p>
+              </div>
             </div>
-            <div className="bg-gradient-to-br from-blue-500/20 to-transparent rounded-xl p-6 backdrop-blur-sm border border-blue-500/20 transform hover:scale-105 transition-all duration-300">
-              <Zap className="w-8 h-8 text-blue-400 mb-3" />
-              <h4 className="text-lg font-bold text-white mb-2">Vision</h4>
-              <p className="text-gray-300 text-sm">Leading the future of digital transformation by creating experiences that inspire and technologies that empower.</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
-    </div>
-  </section>
-));
+    </section>
+  );
+});
 
 export default Story;
