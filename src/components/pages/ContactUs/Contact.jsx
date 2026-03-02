@@ -8,18 +8,18 @@ const SERVICE_GROUPS = [
   {
     label: "Shopify E-Commerce",
     options: [
-      { value: "Shopify — Standard (₹11,999)", tag: "15 Days" },
-      { value: "Shopify — Premium (₹24,999)", tag: "Popular" },
-      { value: "Shopify — Platinum (₹49,999)", tag: "20 Days" },
+      { value: "Shopify — Standard ", tag: "15 Days" },
+      { value: "Shopify — Premium ", tag: "Popular" },
+      { value: "Shopify — Platinum ", tag: "20 Days" },
     ],
   },
   {
     label: "Custom-Coded Website",
     options: [
-      { value: "Landing Page (₹7,999)", tag: "7–10 Days" },
-      { value: "Basic Website (₹14,999)", tag: "Starter" },
-      { value: "Custom Coded E-Commerce (₹50,000)", tag: "Best Value" },
-      { value: "Multivendor Marketplace (₹1,00,000)", tag: "Enterprise" },
+      { value: "Landing Page ", tag: "7–10 Days" },
+      { value: "Basic Website ", tag: "Starter" },
+      { value: "Custom Coded E-Commerce ", tag: "Best Value" },
+      { value: "Multivendor Marketplace ", tag: "Enterprise" },
       { value: "Custom Query — Price on Requirement", tag: "Free Quote" },
     ],
   },
@@ -110,6 +110,7 @@ export default function ContactForm() {
       message: Yup.string().min(10, "Min 10 characters").required("Required"),
     }),
     onSubmit: async (values, { resetForm }) => {
+
       setIsSubmitting(true);
       try {
         const res = await fetch("https://api.airtable.com/v0/appY1D4ypReTKDBCM/contacts", {
@@ -132,6 +133,7 @@ export default function ContactForm() {
             }],
           }),
         });
+        console.log(res);
         if (!res.ok) throw new Error();
         setSuccess(true);
         resetForm();
@@ -220,7 +222,7 @@ export default function ContactForm() {
                   {[
                     { title: "⚡ Fast Response", body: "Critical issues resolved within 2 hours." },
                     { title: "🛡️ 1 Year Free Support", body: "Free post-launch technical support included in every plan." },
-                    { title: "📞 14/7 Availability", body: "Available via WhatsApp, call, and email." },
+                    { title: "📞 24/7 Availability", body: "Available via WhatsApp, call, and email." },
                   ].map(({ title, body }) => (
                     <div key={title} className="p-3 bg-gradient-to-r from-orange-500/10 to-orange-600/10 rounded-xl border border-orange-500/20">
                       <h4 className="text-orange-400 font-semibold text-sm mb-1">{title}</h4>
